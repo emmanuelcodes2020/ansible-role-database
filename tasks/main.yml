@@ -1,0 +1,4 @@
+---
+# tasks file for database-role
+  - name: Install mariadb-server 
+    include_tasks: database.yml

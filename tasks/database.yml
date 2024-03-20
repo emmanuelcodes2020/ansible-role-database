@@ -1,0 +1,36 @@
+---
+  - name: Install MariaDB 10.5 server 
+    dnf:
+      name: mariadb105-server 
+      state: latest
+
+
+  - name: Start and enable MariaDB
+    service:
+      name: mariadb 
+      state: started
+      enabled: yes
+
+
+  - name: Ensure pip3 is installed
+    package:
+      name: python3-pip
+      state: present
+
+  - name: Ensure pexpect is installed
+    pip:
+      name: pexpect
+      state: present
+
+  - name: Ensure PyMySQL is installed for Python3
+    ansible.builtin.pip:
+      name: PyMySQL
+      state: present
+
+  - name: Ensure MariaDB root password is set
+    mysql_user:
+      login_user: "{{ wordpress_db_user }}"
+      login_password: "{{ wordpress_db_password }}"
+      name: root
+      password: "{{ mariadb_root_password }}"
+      host_all: yes

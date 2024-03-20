@@ -1,0 +1,5 @@
+---
+# defaults file for database-role
+mariadb_root_password: "new_root_password"
+wordpress_db_user: "ansible_user"
+wordpress_db_password: "your_password"
